@@ -1,0 +1,1115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LaboratorioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="actividades">
+          <Key>
+            <PropertyRef Name="id_actividad" />
+          </Key>
+          <Property Name="id_actividad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_curso" Type="int" Nullable="false" />
+          <Property Name="tipo_actividad" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="monto_recaudado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="alumno">
+          <Key>
+            <PropertyRef Name="rut_alumno" />
+          </Key>
+          <Property Name="rut_alumno" Type="int" Nullable="false" />
+          <Property Name="dv" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="nombre_alumno" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_curso" Type="int" Nullable="false" />
+          <Property Name="curso" Type="int" Nullable="false" />
+          <Property Name="nivel" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="id_cuenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rut_apoderado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="apoderado">
+          <Key>
+            <PropertyRef Name="rut_apoderado" />
+          </Key>
+          <Property Name="rut_apoderado" Type="int" Nullable="false" />
+          <Property Name="dv" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="nombre_apoderado" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="e_mail" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="colegio">
+          <Key>
+            <PropertyRef Name="id_colegio" />
+          </Key>
+          <Property Name="id_colegio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_colegio" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="direccion_colegio" Type="varchar" MaxLength="50" />
+          <Property Name="comuna_colegio" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="contrato">
+          <Key>
+            <PropertyRef Name="id_contrato" />
+          </Key>
+          <Property Name="id_contrato" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_colegio" Type="int" Nullable="false" />
+          <Property Name="id_curso" Type="int" Nullable="false" />
+          <Property Name="monto_final" Type="int" Nullable="false" />
+          <Property Name="cantidad_alumnos" Type="int" Nullable="false" />
+          <Property Name="destino" Type="varchar" MaxLength="70" />
+          <Property Name="fecha_viaje" Type="date" Nullable="false" />
+          <Property Name="fecha_tope" Type="date" Nullable="false" />
+          <Property Name="id_seguros_contratados" Type="int" />
+          <Property Name="contrato" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cuenta_alumno">
+          <Key>
+            <PropertyRef Name="id_cuenta" />
+          </Key>
+          <Property Name="id_cuenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_curso" Type="int" Nullable="false" />
+          <Property Name="rut_alumno" Type="int" Nullable="false" />
+          <Property Name="saldo" Type="int" Nullable="false" />
+          <Property Name="monto_prorrateado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="curso">
+          <Key>
+            <PropertyRef Name="id_curso" />
+          </Key>
+          <Property Name="id_curso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="curso" Type="int" Nullable="false" />
+          <Property Name="nivel" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="rut_representante" Type="int" Nullable="false" />
+          <Property Name="Colegio_id_colegio" Type="int" Nullable="false" />
+          <Property Name="id_fondo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="depositos">
+          <Key>
+            <PropertyRef Name="id_depósito" />
+          </Key>
+          <Property Name="id_depósito" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="monto" Type="int" Nullable="false" />
+          <Property Name="numero_cuenta" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="comprobante" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="fondo_común">
+          <Key>
+            <PropertyRef Name="id_fondo" />
+          </Key>
+          <Property Name="id_fondo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rut_representante" Type="int" Nullable="false" />
+          <Property Name="meta" Type="int" Nullable="false" />
+          <Property Name="monto_actual" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="funcionario">
+          <Key>
+            <PropertyRef Name="rut_funcionario" />
+          </Key>
+          <Property Name="rut_funcionario" Type="int" Nullable="false" />
+          <Property Name="dv_funcionario" Type="varchar" MaxLength="1" />
+          <Property Name="nombre_funcionario" Type="varchar" MaxLength="50" />
+          <Property Name="rol" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="id_usuario" Type="int" />
+        </EntityType>
+        <EntityType Name="representante">
+          <Key>
+            <PropertyRef Name="Rut_representante" />
+          </Key>
+          <Property Name="Rut_representante" Type="int" Nullable="false" />
+          <Property Name="dv" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="nombre_representante" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="e_mail" Type="varchar" MaxLength="50" />
+          <Property Name="repre_id_curso" Type="int" Nullable="false" />
+          <Property Name="repre_nivel_curso" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="seguros">
+          <Key>
+            <PropertyRef Name="id_seguro" />
+          </Key>
+          <Property Name="id_seguro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipo_de_seguro" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="valor" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="seguros_contratados">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_curso" Type="int" Nullable="false" />
+          <Property Name="id_seguro" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuarios">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_usuario" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="contraseña" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_actividad_curso">
+          <End Role="curso" Type="Self.curso" Multiplicity="1" />
+          <End Role="actividades" Type="Self.actividades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="curso">
+              <PropertyRef Name="id_curso" />
+            </Principal>
+            <Dependent Role="actividades">
+              <PropertyRef Name="id_curso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_alumno_apoderado">
+          <End Role="apoderado" Type="Self.apoderado" Multiplicity="1" />
+          <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="apoderado">
+              <PropertyRef Name="rut_apoderado" />
+            </Principal>
+            <Dependent Role="alumno">
+              <PropertyRef Name="rut_apoderado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_alumno_curso">
+          <End Role="curso" Type="Self.curso" Multiplicity="1" />
+          <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="curso">
+              <PropertyRef Name="id_curso" />
+            </Principal>
+            <Dependent Role="alumno">
+              <PropertyRef Name="id_curso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_contrato_colegio">
+          <End Role="colegio" Type="Self.colegio" Multiplicity="1" />
+          <End Role="contrato" Type="Self.contrato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="colegio">
+              <PropertyRef Name="id_colegio" />
+            </Principal>
+            <Dependent Role="contrato">
+              <PropertyRef Name="id_colegio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_contrato_curso">
+          <End Role="curso" Type="Self.curso" Multiplicity="1" />
+          <End Role="contrato" Type="Self.contrato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="curso">
+              <PropertyRef Name="id_curso" />
+            </Principal>
+            <Dependent Role="contrato">
+              <PropertyRef Name="id_curso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_contrato_seguroContratado_curso">
+          <End Role="curso" Type="Self.curso" Multiplicity="1" />
+          <End Role="contrato" Type="Self.contrato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="curso">
+              <PropertyRef Name="id_curso" />
+            </Principal>
+            <Dependent Role="contrato">
+              <PropertyRef Name="id_curso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cuenta_alumno">
+          <End Role="alumno" Type="Self.alumno" Multiplicity="1" />
+          <End Role="cuenta_alumno" Type="Self.cuenta_alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alumno">
+              <PropertyRef Name="rut_alumno" />
+            </Principal>
+            <Dependent Role="cuenta_alumno">
+              <PropertyRef Name="rut_alumno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cuenta_curso">
+          <End Role="curso" Type="Self.curso" Multiplicity="1" />
+          <End Role="cuenta_alumno" Type="Self.cuenta_alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="curso">
+              <PropertyRef Name="id_curso" />
+            </Principal>
+            <Dependent Role="cuenta_alumno">
+              <PropertyRef Name="id_curso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_curso_colegio">
+          <End Role="colegio" Type="Self.colegio" Multiplicity="1" />
+          <End Role="curso" Type="Self.curso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="colegio">
+              <PropertyRef Name="id_colegio" />
+            </Principal>
+            <Dependent Role="curso">
+              <PropertyRef Name="Colegio_id_colegio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_curso_fondo">
+          <End Role="fondo_común" Type="Self.fondo_común" Multiplicity="1" />
+          <End Role="curso" Type="Self.curso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fondo_común">
+              <PropertyRef Name="id_fondo" />
+            </Principal>
+            <Dependent Role="curso">
+              <PropertyRef Name="id_fondo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_curso_representante">
+          <End Role="representante" Type="Self.representante" Multiplicity="1" />
+          <End Role="curso" Type="Self.curso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="representante">
+              <PropertyRef Name="Rut_representante" />
+            </Principal>
+            <Dependent Role="curso">
+              <PropertyRef Name="rut_representante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_fondo_representante">
+          <End Role="representante" Type="Self.representante" Multiplicity="1" />
+          <End Role="fondo_común" Type="Self.fondo_común" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="representante">
+              <PropertyRef Name="Rut_representante" />
+            </Principal>
+            <Dependent Role="fondo_común">
+              <PropertyRef Name="rut_representante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_funcionario_usuario">
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+          <End Role="funcionario" Type="Self.funcionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="funcionario">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_seguroContratado_seguros">
+          <End Role="seguros" Type="Self.seguros" Multiplicity="1" />
+          <End Role="seguros_contratados" Type="Self.seguros_contratados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="seguros">
+              <PropertyRef Name="id_seguro" />
+            </Principal>
+            <Dependent Role="seguros_contratados">
+              <PropertyRef Name="id_seguro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Sp_actualizarCuentaAlumno" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="a" Type="int" Mode="In" />
+          <Parameter Name="b" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Sp_actualizarFondoComún" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="a" Type="int" Mode="In" />
+          <Parameter Name="b" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Sp_actualizarSaldoCuentaAlumno" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="a" Type="int" Mode="In" />
+          <Parameter Name="b" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Sp_actualizarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="a" Type="int" Mode="In" />
+          <Parameter Name="b" Type="varchar" Mode="In" />
+          <Parameter Name="c" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Sp_AgregarSeguroViaje" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="a" Type="int" Mode="In" />
+          <Parameter Name="b" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Sp_AgregarSeguroVida" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="a" Type="int" Mode="In" />
+          <Parameter Name="b" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Sp_EliminarSeguroVida" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="a" Type="int" Mode="In" />
+          <Parameter Name="b" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Sp_EliminarSeguroVije" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="a" Type="int" Mode="In" />
+          <Parameter Name="b" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Sp_reporte_CuentaAlumno" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="a" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Sp_reporte_InfoAlumno" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="a" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="LaboratorioModelStoreContainer">
+          <EntitySet Name="actividades" EntityType="Self.actividades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="alumno" EntityType="Self.alumno" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="apoderado" EntityType="Self.apoderado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="colegio" EntityType="Self.colegio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="contrato" EntityType="Self.contrato" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cuenta_alumno" EntityType="Self.cuenta_alumno" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="curso" EntityType="Self.curso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="depositos" EntityType="Self.depositos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="fondo_común" EntityType="Self.fondo_común" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="funcionario" EntityType="Self.funcionario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="representante" EntityType="Self.representante" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="seguros" EntityType="Self.seguros" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="seguros_contratados" EntityType="Self.seguros_contratados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_actividad_curso" Association="Self.FK_actividad_curso">
+            <End Role="curso" EntitySet="curso" />
+            <End Role="actividades" EntitySet="actividades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_alumno_apoderado" Association="Self.FK_alumno_apoderado">
+            <End Role="apoderado" EntitySet="apoderado" />
+            <End Role="alumno" EntitySet="alumno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_alumno_curso" Association="Self.FK_alumno_curso">
+            <End Role="curso" EntitySet="curso" />
+            <End Role="alumno" EntitySet="alumno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_contrato_colegio" Association="Self.FK_contrato_colegio">
+            <End Role="colegio" EntitySet="colegio" />
+            <End Role="contrato" EntitySet="contrato" />
+          </AssociationSet>
+          <AssociationSet Name="FK_contrato_curso" Association="Self.FK_contrato_curso">
+            <End Role="curso" EntitySet="curso" />
+            <End Role="contrato" EntitySet="contrato" />
+          </AssociationSet>
+          <AssociationSet Name="FK_contrato_seguroContratado_curso" Association="Self.FK_contrato_seguroContratado_curso">
+            <End Role="curso" EntitySet="curso" />
+            <End Role="contrato" EntitySet="contrato" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cuenta_alumno" Association="Self.FK_Cuenta_alumno">
+            <End Role="alumno" EntitySet="alumno" />
+            <End Role="cuenta_alumno" EntitySet="cuenta_alumno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cuenta_curso" Association="Self.FK_Cuenta_curso">
+            <End Role="curso" EntitySet="curso" />
+            <End Role="cuenta_alumno" EntitySet="cuenta_alumno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_curso_colegio" Association="Self.FK_curso_colegio">
+            <End Role="colegio" EntitySet="colegio" />
+            <End Role="curso" EntitySet="curso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_curso_fondo" Association="Self.FK_curso_fondo">
+            <End Role="fondo_común" EntitySet="fondo_común" />
+            <End Role="curso" EntitySet="curso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_curso_representante" Association="Self.FK_curso_representante">
+            <End Role="representante" EntitySet="representante" />
+            <End Role="curso" EntitySet="curso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_fondo_representante" Association="Self.FK_fondo_representante">
+            <End Role="representante" EntitySet="representante" />
+            <End Role="fondo_común" EntitySet="fondo_común" />
+          </AssociationSet>
+          <AssociationSet Name="FK_funcionario_usuario" Association="Self.FK_funcionario_usuario">
+            <End Role="usuarios" EntitySet="usuarios" />
+            <End Role="funcionario" EntitySet="funcionario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_seguroContratado_seguros" Association="Self.FK_seguroContratado_seguros">
+            <End Role="seguros" EntitySet="seguros" />
+            <End Role="seguros_contratados" EntitySet="seguros_contratados" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LaboratorioModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="LaboratorioEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="Sp_actualizarCuentaAlumno">
+            <Parameter Name="a" Mode="In" Type="Int32" />
+            <Parameter Name="b" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_reporte_CuentaAlumno" ReturnType="Collection(LaboratorioModel.Sp_reporte_CuentaAlumno_Result)">
+          <Parameter Name="a" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_reporte_InfoAlumno" ReturnType="Collection(LaboratorioModel.Sp_reporte_InfoAlumno_Result)">
+          <Parameter Name="a" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_actualizarFondoComún">
+            <Parameter Name="a" Mode="In" Type="Int32" />
+            <Parameter Name="b" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_actualizarUsuario">
+            <Parameter Name="a" Mode="In" Type="Int32" />
+            <Parameter Name="b" Mode="In" Type="String" />
+            <Parameter Name="c" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_actualizarSaldoCuentaAlumno">
+            <Parameter Name="a" Mode="In" Type="Int32" />
+            <Parameter Name="b" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_AgregarSeguroVida">
+            <Parameter Name="a" Mode="In" Type="Int32" />
+            <Parameter Name="b" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_EliminarSeguroVida">
+            <Parameter Name="a" Mode="In" Type="Int32" />
+            <Parameter Name="b" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_AgregarSeguroViaje">
+            <Parameter Name="a" Mode="In" Type="Int32" />
+            <Parameter Name="b" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="actividades" EntityType="LaboratorioModel.actividades" />
+          <EntitySet Name="alumno" EntityType="LaboratorioModel.alumno" />
+          <EntitySet Name="apoderado" EntityType="LaboratorioModel.apoderado" />
+          <EntitySet Name="colegio" EntityType="LaboratorioModel.colegio" />
+          <EntitySet Name="contrato" EntityType="LaboratorioModel.contrato" />
+          <EntitySet Name="cuenta_alumno" EntityType="LaboratorioModel.cuenta_alumno" />
+          <EntitySet Name="curso" EntityType="LaboratorioModel.curso" />
+          <EntitySet Name="depositos" EntityType="LaboratorioModel.depositos" />
+          <EntitySet Name="fondo_común" EntityType="LaboratorioModel.fondo_común" />
+          <EntitySet Name="funcionario" EntityType="LaboratorioModel.funcionario" />
+          <EntitySet Name="representante" EntityType="LaboratorioModel.representante" />
+          <EntitySet Name="seguros" EntityType="LaboratorioModel.seguros" />
+          <EntitySet Name="seguros_contratados" EntityType="LaboratorioModel.seguros_contratados" />
+          <EntitySet Name="usuarios" EntityType="LaboratorioModel.usuarios" />
+          <AssociationSet Name="FK_actividad_curso" Association="LaboratorioModel.FK_actividad_curso">
+            <End Role="curso" EntitySet="curso" />
+            <End Role="actividades" EntitySet="actividades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_alumno_apoderado" Association="LaboratorioModel.FK_alumno_apoderado">
+            <End Role="apoderado" EntitySet="apoderado" />
+            <End Role="alumno" EntitySet="alumno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_alumno_curso" Association="LaboratorioModel.FK_alumno_curso">
+            <End Role="curso" EntitySet="curso" />
+            <End Role="alumno" EntitySet="alumno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cuenta_alumno" Association="LaboratorioModel.FK_Cuenta_alumno">
+            <End Role="alumno" EntitySet="alumno" />
+            <End Role="cuenta_alumno" EntitySet="cuenta_alumno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_contrato_colegio" Association="LaboratorioModel.FK_contrato_colegio">
+            <End Role="colegio" EntitySet="colegio" />
+            <End Role="contrato" EntitySet="contrato" />
+          </AssociationSet>
+          <AssociationSet Name="FK_curso_colegio" Association="LaboratorioModel.FK_curso_colegio">
+            <End Role="colegio" EntitySet="colegio" />
+            <End Role="curso" EntitySet="curso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_contrato_curso" Association="LaboratorioModel.FK_contrato_curso">
+            <End Role="curso" EntitySet="curso" />
+            <End Role="contrato" EntitySet="contrato" />
+          </AssociationSet>
+          <AssociationSet Name="FK_contrato_seguroContratado_curso" Association="LaboratorioModel.FK_contrato_seguroContratado_curso">
+            <End Role="curso" EntitySet="curso" />
+            <End Role="contrato" EntitySet="contrato" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cuenta_curso" Association="LaboratorioModel.FK_Cuenta_curso">
+            <End Role="curso" EntitySet="curso" />
+            <End Role="cuenta_alumno" EntitySet="cuenta_alumno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_curso_fondo" Association="LaboratorioModel.FK_curso_fondo">
+            <End Role="fondo_común" EntitySet="fondo_común" />
+            <End Role="curso" EntitySet="curso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_curso_representante" Association="LaboratorioModel.FK_curso_representante">
+            <End Role="representante" EntitySet="representante" />
+            <End Role="curso" EntitySet="curso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_fondo_representante" Association="LaboratorioModel.FK_fondo_representante">
+            <End Role="representante" EntitySet="representante" />
+            <End Role="fondo_común" EntitySet="fondo_común" />
+          </AssociationSet>
+          <AssociationSet Name="FK_funcionario_usuario" Association="LaboratorioModel.FK_funcionario_usuario">
+            <End Role="usuarios" EntitySet="usuarios" />
+            <End Role="funcionario" EntitySet="funcionario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_seguroContratado_seguros" Association="LaboratorioModel.FK_seguroContratado_seguros">
+            <End Role="seguros" EntitySet="seguros" />
+            <End Role="seguros_contratados" EntitySet="seguros_contratados" />
+          </AssociationSet>
+          <FunctionImport Name="Sp_EliminarSeguroVije">
+            <Parameter Name="a" Mode="In" Type="Int32" />
+            <Parameter Name="b" Mode="In" Type="Int32" />
+          </FunctionImport>
+          </EntityContainer>
+        <ComplexType Name="Sp_reporte_CuentaAlumno_Result">
+          <Property Type="DateTime" Name="fecha" Nullable="false" />
+          <Property Type="Int32" Name="id_depósito" Nullable="false" />
+          <Property Type="String" Name="tipo" Nullable="false" MaxLength="15" />
+          <Property Type="Int32" Name="monto" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Sp_reporte_InfoAlumno_Result">
+          <Property Type="Int32" Name="rut_alumno" Nullable="false" />
+          <Property Type="String" Name="nombre_alumno" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="id_curso" Nullable="false" />
+          <Property Type="Int32" Name="curso" Nullable="false" />
+          <Property Type="String" Name="nivel" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="id_cuenta" Nullable="false" />
+          <Property Type="Int32" Name="monto_prorrateado" Nullable="false" />
+          <Property Type="Int32" Name="saldo" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="actividades">
+          <Key>
+            <PropertyRef Name="id_actividad" />
+          </Key>
+          <Property Name="id_actividad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_curso" Type="Int32" Nullable="false" />
+          <Property Name="tipo_actividad" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="monto_recaudado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="curso" Relationship="LaboratorioModel.FK_actividad_curso" FromRole="actividades" ToRole="curso" />
+        </EntityType>
+        <EntityType Name="alumno">
+          <Key>
+            <PropertyRef Name="rut_alumno" />
+          </Key>
+          <Property Name="rut_alumno" Type="Int32" Nullable="false" />
+          <Property Name="dv" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="nombre_alumno" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_curso" Type="Int32" Nullable="false" />
+          <Property Name="curso" Type="Int32" Nullable="false" />
+          <Property Name="nivel" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="id_cuenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rut_apoderado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="apoderado" Relationship="LaboratorioModel.FK_alumno_apoderado" FromRole="alumno" ToRole="apoderado" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <NavigationProperty Name="curso1" Relationship="LaboratorioModel.FK_alumno_curso" FromRole="alumno" ToRole="curso" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <NavigationProperty Name="cuenta_alumno" Relationship="LaboratorioModel.FK_Cuenta_alumno" FromRole="alumno" ToRole="cuenta_alumno" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        </EntityType>
+        <EntityType Name="apoderado">
+          <Key>
+            <PropertyRef Name="rut_apoderado" />
+          </Key>
+          <Property Name="rut_apoderado" Type="Int32" Nullable="false" />
+          <Property Name="dv" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="nombre_apoderado" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="e_mail" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="alumno" Relationship="LaboratorioModel.FK_alumno_apoderado" FromRole="apoderado" ToRole="alumno" />
+        </EntityType>
+        <EntityType Name="colegio">
+          <Key>
+            <PropertyRef Name="id_colegio" />
+          </Key>
+          <Property Name="id_colegio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_colegio" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="direccion_colegio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="comuna_colegio" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="contrato" Relationship="LaboratorioModel.FK_contrato_colegio" FromRole="colegio" ToRole="contrato" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <NavigationProperty Name="curso" Relationship="LaboratorioModel.FK_curso_colegio" FromRole="colegio" ToRole="curso" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        </EntityType>
+        <EntityType Name="contrato">
+          <Key>
+            <PropertyRef Name="id_contrato" />
+          </Key>
+          <Property Name="id_contrato" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_colegio" Type="Int32" Nullable="false" />
+          <Property Name="id_curso" Type="Int32" Nullable="false" />
+          <Property Name="monto_final" Type="Int32" Nullable="false" />
+          <Property Name="cantidad_alumnos" Type="Int32" Nullable="false" />
+          <Property Name="destino" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_viaje" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fecha_tope" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="id_seguros_contratados" Type="Int32" />
+          <Property Name="contrato1" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="colegio" Relationship="LaboratorioModel.FK_contrato_colegio" FromRole="contrato" ToRole="colegio" />
+          <NavigationProperty Name="curso" Relationship="LaboratorioModel.FK_contrato_curso" FromRole="contrato" ToRole="curso" />
+          <NavigationProperty Name="curso1" Relationship="LaboratorioModel.FK_contrato_seguroContratado_curso" FromRole="contrato" ToRole="curso" />
+        </EntityType>
+        <EntityType Name="cuenta_alumno">
+          <Key>
+            <PropertyRef Name="id_cuenta" />
+          </Key>
+          <Property Name="id_cuenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_curso" Type="Int32" Nullable="false" />
+          <Property Name="rut_alumno" Type="Int32" Nullable="false" />
+          <Property Name="saldo" Type="Int32" Nullable="false" />
+          <Property Name="monto_prorrateado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="alumno" Relationship="LaboratorioModel.FK_Cuenta_alumno" FromRole="cuenta_alumno" ToRole="alumno" />
+          <NavigationProperty Name="curso" Relationship="LaboratorioModel.FK_Cuenta_curso" FromRole="cuenta_alumno" ToRole="curso" />
+        </EntityType>
+        <EntityType Name="curso">
+          <Key>
+            <PropertyRef Name="id_curso" />
+          </Key>
+          <Property Name="id_curso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="curso1" Type="Int32" Nullable="false" />
+          <Property Name="nivel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="rut_representante" Type="Int32" Nullable="false" />
+          <Property Name="Colegio_id_colegio" Type="Int32" Nullable="false" />
+          <Property Name="id_fondo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="actividades" Relationship="LaboratorioModel.FK_actividad_curso" FromRole="curso" ToRole="actividades" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <NavigationProperty Name="alumno" Relationship="LaboratorioModel.FK_alumno_curso" FromRole="curso" ToRole="alumno" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <NavigationProperty Name="colegio" Relationship="LaboratorioModel.FK_curso_colegio" FromRole="curso" ToRole="colegio" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <NavigationProperty Name="contrato" Relationship="LaboratorioModel.FK_contrato_curso" FromRole="curso" ToRole="contrato" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <NavigationProperty Name="contrato1" Relationship="LaboratorioModel.FK_contrato_seguroContratado_curso" FromRole="curso" ToRole="contrato" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <NavigationProperty Name="cuenta_alumno" Relationship="LaboratorioModel.FK_Cuenta_curso" FromRole="curso" ToRole="cuenta_alumno" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <NavigationProperty Name="fondo_común" Relationship="LaboratorioModel.FK_curso_fondo" FromRole="curso" ToRole="fondo_común" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <NavigationProperty Name="representante" Relationship="LaboratorioModel.FK_curso_representante" FromRole="curso" ToRole="representante" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        </EntityType>
+        <EntityType Name="depositos">
+          <Key>
+            <PropertyRef Name="id_depósito" />
+          </Key>
+          <Property Name="id_depósito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="monto" Type="Int32" Nullable="false" />
+          <Property Name="numero_cuenta" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="comprobante" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="fondo_común">
+          <Key>
+            <PropertyRef Name="id_fondo" />
+          </Key>
+          <Property Name="id_fondo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rut_representante" Type="Int32" Nullable="false" />
+          <Property Name="meta" Type="Int32" Nullable="false" />
+          <Property Name="monto_actual" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="curso" Relationship="LaboratorioModel.FK_curso_fondo" FromRole="fondo_común" ToRole="curso" />
+          <NavigationProperty Name="representante" Relationship="LaboratorioModel.FK_fondo_representante" FromRole="fondo_común" ToRole="representante" />
+        </EntityType>
+        <EntityType Name="funcionario">
+          <Key>
+            <PropertyRef Name="rut_funcionario" />
+          </Key>
+          <Property Name="rut_funcionario" Type="Int32" Nullable="false" />
+          <Property Name="dv_funcionario" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="nombre_funcionario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="rol" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="id_usuario" Type="Int32" />
+          <NavigationProperty Name="usuarios" Relationship="LaboratorioModel.FK_funcionario_usuario" FromRole="funcionario" ToRole="usuarios" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        </EntityType>
+        <EntityType Name="representante">
+          <Key>
+            <PropertyRef Name="Rut_representante" />
+          </Key>
+          <Property Name="Rut_representante" Type="Int32" Nullable="false" />
+          <Property Name="dv" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="nombre_representante" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="e_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="repre_id_curso" Type="Int32" Nullable="false" />
+          <Property Name="repre_nivel_curso" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="curso" Relationship="LaboratorioModel.FK_curso_representante" FromRole="representante" ToRole="curso" />
+          <NavigationProperty Name="fondo_común" Relationship="LaboratorioModel.FK_fondo_representante" FromRole="representante" ToRole="fondo_común" />
+        </EntityType>
+        <EntityType Name="seguros">
+          <Key>
+            <PropertyRef Name="id_seguro" />
+          </Key>
+          <Property Name="id_seguro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo_de_seguro" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="valor" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="seguros_contratados" Relationship="LaboratorioModel.FK_seguroContratado_seguros" FromRole="seguros" ToRole="seguros_contratados" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        </EntityType>
+        <EntityType Name="seguros_contratados">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_curso" Type="Int32" Nullable="false" />
+          <Property Name="id_seguro" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="seguros" Relationship="LaboratorioModel.FK_seguroContratado_seguros" FromRole="seguros_contratados" ToRole="seguros" />
+        </EntityType>
+        <EntityType Name="usuarios">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_usuario" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="contraseña" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="funcionario" Relationship="LaboratorioModel.FK_funcionario_usuario" FromRole="usuarios" ToRole="funcionario" />
+        </EntityType>
+        <Association Name="FK_actividad_curso">
+          <End Type="LaboratorioModel.curso" Role="curso" Multiplicity="1" />
+          <End Type="LaboratorioModel.actividades" Role="actividades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="curso">
+              <PropertyRef Name="id_curso" />
+            </Principal>
+            <Dependent Role="actividades">
+              <PropertyRef Name="id_curso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_alumno_apoderado">
+          <End Type="LaboratorioModel.apoderado" Role="apoderado" Multiplicity="1" />
+          <End Type="LaboratorioModel.alumno" Role="alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="apoderado">
+              <PropertyRef Name="rut_apoderado" />
+            </Principal>
+            <Dependent Role="alumno">
+              <PropertyRef Name="rut_apoderado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_alumno_curso">
+          <End Type="LaboratorioModel.curso" Role="curso" Multiplicity="1" />
+          <End Type="LaboratorioModel.alumno" Role="alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="curso">
+              <PropertyRef Name="id_curso" />
+            </Principal>
+            <Dependent Role="alumno">
+              <PropertyRef Name="id_curso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cuenta_alumno">
+          <End Type="LaboratorioModel.alumno" Role="alumno" Multiplicity="1" />
+          <End Type="LaboratorioModel.cuenta_alumno" Role="cuenta_alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alumno">
+              <PropertyRef Name="rut_alumno" />
+            </Principal>
+            <Dependent Role="cuenta_alumno">
+              <PropertyRef Name="rut_alumno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_contrato_colegio">
+          <End Type="LaboratorioModel.colegio" Role="colegio" Multiplicity="1" />
+          <End Type="LaboratorioModel.contrato" Role="contrato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="colegio">
+              <PropertyRef Name="id_colegio" />
+            </Principal>
+            <Dependent Role="contrato">
+              <PropertyRef Name="id_colegio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_curso_colegio">
+          <End Type="LaboratorioModel.colegio" Role="colegio" Multiplicity="1" />
+          <End Type="LaboratorioModel.curso" Role="curso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="colegio">
+              <PropertyRef Name="id_colegio" />
+            </Principal>
+            <Dependent Role="curso">
+              <PropertyRef Name="Colegio_id_colegio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_contrato_curso">
+          <End Type="LaboratorioModel.curso" Role="curso" Multiplicity="1" />
+          <End Type="LaboratorioModel.contrato" Role="contrato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="curso">
+              <PropertyRef Name="id_curso" />
+            </Principal>
+            <Dependent Role="contrato">
+              <PropertyRef Name="id_curso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_contrato_seguroContratado_curso">
+          <End Type="LaboratorioModel.curso" Role="curso" Multiplicity="1" />
+          <End Type="LaboratorioModel.contrato" Role="contrato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="curso">
+              <PropertyRef Name="id_curso" />
+            </Principal>
+            <Dependent Role="contrato">
+              <PropertyRef Name="id_curso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cuenta_curso">
+          <End Type="LaboratorioModel.curso" Role="curso" Multiplicity="1" />
+          <End Type="LaboratorioModel.cuenta_alumno" Role="cuenta_alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="curso">
+              <PropertyRef Name="id_curso" />
+            </Principal>
+            <Dependent Role="cuenta_alumno">
+              <PropertyRef Name="id_curso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_curso_fondo">
+          <End Type="LaboratorioModel.fondo_común" Role="fondo_común" Multiplicity="1" />
+          <End Type="LaboratorioModel.curso" Role="curso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fondo_común">
+              <PropertyRef Name="id_fondo" />
+            </Principal>
+            <Dependent Role="curso">
+              <PropertyRef Name="id_fondo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_curso_representante">
+          <End Type="LaboratorioModel.representante" Role="representante" Multiplicity="1" />
+          <End Type="LaboratorioModel.curso" Role="curso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="representante">
+              <PropertyRef Name="Rut_representante" />
+            </Principal>
+            <Dependent Role="curso">
+              <PropertyRef Name="rut_representante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_fondo_representante">
+          <End Type="LaboratorioModel.representante" Role="representante" Multiplicity="1" />
+          <End Type="LaboratorioModel.fondo_común" Role="fondo_común" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="representante">
+              <PropertyRef Name="Rut_representante" />
+            </Principal>
+            <Dependent Role="fondo_común">
+              <PropertyRef Name="rut_representante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_funcionario_usuario">
+          <End Type="LaboratorioModel.usuarios" Role="usuarios" Multiplicity="0..1" />
+          <End Type="LaboratorioModel.funcionario" Role="funcionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="funcionario">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_seguroContratado_seguros">
+          <End Type="LaboratorioModel.seguros" Role="seguros" Multiplicity="1" />
+          <End Type="LaboratorioModel.seguros_contratados" Role="seguros_contratados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="seguros">
+              <PropertyRef Name="id_seguro" />
+            </Principal>
+            <Dependent Role="seguros_contratados">
+              <PropertyRef Name="id_seguro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LaboratorioModelStoreContainer" CdmEntityContainer="LaboratorioEntities">
+          <FunctionImportMapping FunctionImportName="Sp_actualizarCuentaAlumno" FunctionName="LaboratorioModel.Store.Sp_actualizarCuentaAlumno" />
+          <FunctionImportMapping FunctionImportName="Sp_reporte_CuentaAlumno" FunctionName="LaboratorioModel.Store.Sp_reporte_CuentaAlumno">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LaboratorioModel.Sp_reporte_CuentaAlumno_Result">
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="id_depósito" ColumnName="id_depósito" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Sp_reporte_InfoAlumno" FunctionName="LaboratorioModel.Store.Sp_reporte_InfoAlumno">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LaboratorioModel.Sp_reporte_InfoAlumno_Result">
+                <ScalarProperty Name="rut_alumno" ColumnName="rut_alumno" />
+                <ScalarProperty Name="nombre_alumno" ColumnName="nombre_alumno" />
+                <ScalarProperty Name="id_curso" ColumnName="id_curso" />
+                <ScalarProperty Name="curso" ColumnName="curso" />
+                <ScalarProperty Name="nivel" ColumnName="nivel" />
+                <ScalarProperty Name="id_cuenta" ColumnName="id_cuenta" />
+                <ScalarProperty Name="monto_prorrateado" ColumnName="monto_prorrateado" />
+                <ScalarProperty Name="saldo" ColumnName="saldo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Sp_actualizarFondoComún" FunctionName="LaboratorioModel.Store.Sp_actualizarFondoComún" />
+          <FunctionImportMapping FunctionImportName="Sp_actualizarUsuario" FunctionName="LaboratorioModel.Store.Sp_actualizarUsuario" />
+          <FunctionImportMapping FunctionImportName="Sp_actualizarSaldoCuentaAlumno" FunctionName="LaboratorioModel.Store.Sp_actualizarSaldoCuentaAlumno" />
+          <FunctionImportMapping FunctionImportName="Sp_AgregarSeguroVida" FunctionName="LaboratorioModel.Store.Sp_AgregarSeguroVida" />
+          <FunctionImportMapping FunctionImportName="Sp_EliminarSeguroVida" FunctionName="LaboratorioModel.Store.Sp_EliminarSeguroVida" />
+          <FunctionImportMapping FunctionImportName="Sp_AgregarSeguroViaje" FunctionName="LaboratorioModel.Store.Sp_AgregarSeguroViaje" />
+          <EntitySetMapping Name="actividades">
+            <EntityTypeMapping TypeName="LaboratorioModel.actividades">
+              <MappingFragment StoreEntitySet="actividades">
+                <ScalarProperty Name="monto_recaudado" ColumnName="monto_recaudado" />
+                <ScalarProperty Name="tipo_actividad" ColumnName="tipo_actividad" />
+                <ScalarProperty Name="id_curso" ColumnName="id_curso" />
+                <ScalarProperty Name="id_actividad" ColumnName="id_actividad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="alumno">
+            <EntityTypeMapping TypeName="LaboratorioModel.alumno">
+              <MappingFragment StoreEntitySet="alumno">
+                <ScalarProperty Name="rut_apoderado" ColumnName="rut_apoderado" />
+                <ScalarProperty Name="id_cuenta" ColumnName="id_cuenta" />
+                <ScalarProperty Name="nivel" ColumnName="nivel" />
+                <ScalarProperty Name="curso" ColumnName="curso" />
+                <ScalarProperty Name="id_curso" ColumnName="id_curso" />
+                <ScalarProperty Name="nombre_alumno" ColumnName="nombre_alumno" />
+                <ScalarProperty Name="dv" ColumnName="dv" />
+                <ScalarProperty Name="rut_alumno" ColumnName="rut_alumno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="apoderado">
+            <EntityTypeMapping TypeName="LaboratorioModel.apoderado">
+              <MappingFragment StoreEntitySet="apoderado">
+                <ScalarProperty Name="e_mail" ColumnName="e_mail" />
+                <ScalarProperty Name="nombre_apoderado" ColumnName="nombre_apoderado" />
+                <ScalarProperty Name="dv" ColumnName="dv" />
+                <ScalarProperty Name="rut_apoderado" ColumnName="rut_apoderado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="colegio">
+            <EntityTypeMapping TypeName="LaboratorioModel.colegio">
+              <MappingFragment StoreEntitySet="colegio">
+                <ScalarProperty Name="comuna_colegio" ColumnName="comuna_colegio" />
+                <ScalarProperty Name="direccion_colegio" ColumnName="direccion_colegio" />
+                <ScalarProperty Name="nombre_colegio" ColumnName="nombre_colegio" />
+                <ScalarProperty Name="id_colegio" ColumnName="id_colegio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contrato">
+            <EntityTypeMapping TypeName="LaboratorioModel.contrato">
+              <MappingFragment StoreEntitySet="contrato">
+                <ScalarProperty Name="contrato1" ColumnName="contrato" />
+                <ScalarProperty Name="id_seguros_contratados" ColumnName="id_seguros_contratados" />
+                <ScalarProperty Name="fecha_tope" ColumnName="fecha_tope" />
+                <ScalarProperty Name="fecha_viaje" ColumnName="fecha_viaje" />
+                <ScalarProperty Name="destino" ColumnName="destino" />
+                <ScalarProperty Name="cantidad_alumnos" ColumnName="cantidad_alumnos" />
+                <ScalarProperty Name="monto_final" ColumnName="monto_final" />
+                <ScalarProperty Name="id_curso" ColumnName="id_curso" />
+                <ScalarProperty Name="id_colegio" ColumnName="id_colegio" />
+                <ScalarProperty Name="id_contrato" ColumnName="id_contrato" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cuenta_alumno">
+            <EntityTypeMapping TypeName="LaboratorioModel.cuenta_alumno">
+              <MappingFragment StoreEntitySet="cuenta_alumno">
+                <ScalarProperty Name="monto_prorrateado" ColumnName="monto_prorrateado" />
+                <ScalarProperty Name="saldo" ColumnName="saldo" />
+                <ScalarProperty Name="rut_alumno" ColumnName="rut_alumno" />
+                <ScalarProperty Name="id_curso" ColumnName="id_curso" />
+                <ScalarProperty Name="id_cuenta" ColumnName="id_cuenta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="curso">
+            <EntityTypeMapping TypeName="LaboratorioModel.curso">
+              <MappingFragment StoreEntitySet="curso">
+                <ScalarProperty Name="id_fondo" ColumnName="id_fondo" />
+                <ScalarProperty Name="Colegio_id_colegio" ColumnName="Colegio_id_colegio" />
+                <ScalarProperty Name="rut_representante" ColumnName="rut_representante" />
+                <ScalarProperty Name="nivel" ColumnName="nivel" />
+                <ScalarProperty Name="curso1" ColumnName="curso" />
+                <ScalarProperty Name="id_curso" ColumnName="id_curso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="depositos">
+            <EntityTypeMapping TypeName="LaboratorioModel.depositos">
+              <MappingFragment StoreEntitySet="depositos">
+                <ScalarProperty Name="comprobante" ColumnName="comprobante" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="numero_cuenta" ColumnName="numero_cuenta" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="id_depósito" ColumnName="id_depósito" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="fondo_común">
+            <EntityTypeMapping TypeName="LaboratorioModel.fondo_común">
+              <MappingFragment StoreEntitySet="fondo_común">
+                <ScalarProperty Name="monto_actual" ColumnName="monto_actual" />
+                <ScalarProperty Name="meta" ColumnName="meta" />
+                <ScalarProperty Name="rut_representante" ColumnName="rut_representante" />
+                <ScalarProperty Name="id_fondo" ColumnName="id_fondo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="funcionario">
+            <EntityTypeMapping TypeName="LaboratorioModel.funcionario">
+              <MappingFragment StoreEntitySet="funcionario">
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="rol" ColumnName="rol" />
+                <ScalarProperty Name="nombre_funcionario" ColumnName="nombre_funcionario" />
+                <ScalarProperty Name="dv_funcionario" ColumnName="dv_funcionario" />
+                <ScalarProperty Name="rut_funcionario" ColumnName="rut_funcionario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="representante">
+            <EntityTypeMapping TypeName="LaboratorioModel.representante">
+              <MappingFragment StoreEntitySet="representante">
+                <ScalarProperty Name="repre_nivel_curso" ColumnName="repre_nivel_curso" />
+                <ScalarProperty Name="repre_id_curso" ColumnName="repre_id_curso" />
+                <ScalarProperty Name="e_mail" ColumnName="e_mail" />
+                <ScalarProperty Name="nombre_representante" ColumnName="nombre_representante" />
+                <ScalarProperty Name="dv" ColumnName="dv" />
+                <ScalarProperty Name="Rut_representante" ColumnName="Rut_representante" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="seguros">
+            <EntityTypeMapping TypeName="LaboratorioModel.seguros">
+              <MappingFragment StoreEntitySet="seguros">
+                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="Tipo_de_seguro" ColumnName="Tipo_de_seguro" />
+                <ScalarProperty Name="id_seguro" ColumnName="id_seguro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="seguros_contratados">
+            <EntityTypeMapping TypeName="LaboratorioModel.seguros_contratados">
+              <MappingFragment StoreEntitySet="seguros_contratados">
+                <ScalarProperty Name="id_seguro" ColumnName="id_seguro" />
+                <ScalarProperty Name="id_curso" ColumnName="id_curso" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuarios">
+            <EntityTypeMapping TypeName="LaboratorioModel.usuarios">
+              <MappingFragment StoreEntitySet="usuarios">
+                <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+                <ScalarProperty Name="nombre_usuario" ColumnName="nombre_usuario" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Sp_EliminarSeguroVije" FunctionName="LaboratorioModel.Store.Sp_EliminarSeguroVije" />
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

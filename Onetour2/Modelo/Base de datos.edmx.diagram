@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0ff75b9e417e4bc18101c71f92fc331b" Name="Diagram1" ZoomLevel="88">
+        <EntityTypeShape EntityType="LaboratorioModel.actividades" Width="1.5" PointX="7.5" PointY="17.25" />
+        <EntityTypeShape EntityType="LaboratorioModel.alumno" Width="1.5" PointX="10.5" PointY="8.625" />
+        <EntityTypeShape EntityType="LaboratorioModel.apoderado" Width="1.5" PointX="8.25" PointY="5.125" />
+        <EntityTypeShape EntityType="LaboratorioModel.colegio" Width="1.5" PointX="3" PointY="8" />
+        <EntityTypeShape EntityType="LaboratorioModel.contrato" Width="1.5" PointX="7.5" PointY="8.375" />
+        <EntityTypeShape EntityType="LaboratorioModel.cuenta_alumno" Width="1.5" PointX="12.75" PointY="9" />
+        <EntityTypeShape EntityType="LaboratorioModel.curso" Width="1.5" PointX="5.25" PointY="8.25" />
+        <EntityTypeShape EntityType="LaboratorioModel.depositos" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="LaboratorioModel.fondo_común" Width="1.5" PointX="3" PointY="11.375" />
+        <EntityTypeShape EntityType="LaboratorioModel.funcionario" Width="1.5" PointX="3" PointY="0.875" />
+        <EntityTypeShape EntityType="LaboratorioModel.representante" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="LaboratorioModel.seguros" Width="1.5" PointX="2.75" PointY="4.875" />
+        <EntityTypeShape EntityType="LaboratorioModel.seguros_contratados" Width="1.5" PointX="5" PointY="5" />
+        <EntityTypeShape EntityType="LaboratorioModel.usuarios" Width="1.5" PointX="0.75" PointY="1.125" />
+        <AssociationConnector Association="LaboratorioModel.FK_actividad_curso" />
+        <AssociationConnector Association="LaboratorioModel.FK_alumno_apoderado" />
+        <AssociationConnector Association="LaboratorioModel.FK_alumno_curso" />
+        <AssociationConnector Association="LaboratorioModel.FK_Cuenta_alumno" />
+        <AssociationConnector Association="LaboratorioModel.FK_contrato_colegio" />
+        <AssociationConnector Association="LaboratorioModel.FK_curso_colegio" />
+        <AssociationConnector Association="LaboratorioModel.FK_contrato_curso" />
+        <AssociationConnector Association="LaboratorioModel.FK_contrato_seguroContratado_curso" />
+        <AssociationConnector Association="LaboratorioModel.FK_Cuenta_curso" />
+        <AssociationConnector Association="LaboratorioModel.FK_curso_fondo" />
+        <AssociationConnector Association="LaboratorioModel.FK_curso_representante" />
+        <AssociationConnector Association="LaboratorioModel.FK_fondo_representante" />
+        <AssociationConnector Association="LaboratorioModel.FK_funcionario_usuario" />
+        <AssociationConnector Association="LaboratorioModel.FK_seguroContratado_seguros" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

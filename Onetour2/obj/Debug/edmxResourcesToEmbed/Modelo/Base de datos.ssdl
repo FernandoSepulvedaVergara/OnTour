@@ -1,0 +1,424 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LaboratorioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="actividades">
+    <Key>
+      <PropertyRef Name="id_actividad" />
+    </Key>
+    <Property Name="id_actividad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_curso" Type="int" Nullable="false" />
+    <Property Name="tipo_actividad" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="monto_recaudado" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="alumno">
+    <Key>
+      <PropertyRef Name="rut_alumno" />
+    </Key>
+    <Property Name="rut_alumno" Type="int" Nullable="false" />
+    <Property Name="dv" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="nombre_alumno" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="id_curso" Type="int" Nullable="false" />
+    <Property Name="curso" Type="int" Nullable="false" />
+    <Property Name="nivel" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="id_cuenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="rut_apoderado" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="apoderado">
+    <Key>
+      <PropertyRef Name="rut_apoderado" />
+    </Key>
+    <Property Name="rut_apoderado" Type="int" Nullable="false" />
+    <Property Name="dv" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="nombre_apoderado" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="e_mail" Type="varchar" MaxLength="40" />
+  </EntityType>
+  <EntityType Name="colegio">
+    <Key>
+      <PropertyRef Name="id_colegio" />
+    </Key>
+    <Property Name="id_colegio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_colegio" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="direccion_colegio" Type="varchar" MaxLength="50" />
+    <Property Name="comuna_colegio" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="contrato">
+    <Key>
+      <PropertyRef Name="id_contrato" />
+    </Key>
+    <Property Name="id_contrato" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_colegio" Type="int" Nullable="false" />
+    <Property Name="id_curso" Type="int" Nullable="false" />
+    <Property Name="monto_final" Type="int" Nullable="false" />
+    <Property Name="cantidad_alumnos" Type="int" Nullable="false" />
+    <Property Name="destino" Type="varchar" MaxLength="70" />
+    <Property Name="fecha_viaje" Type="date" Nullable="false" />
+    <Property Name="fecha_tope" Type="date" Nullable="false" />
+    <Property Name="id_seguros_contratados" Type="int" />
+    <Property Name="contrato" Type="varbinary(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="cuenta_alumno">
+    <Key>
+      <PropertyRef Name="id_cuenta" />
+    </Key>
+    <Property Name="id_cuenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_curso" Type="int" Nullable="false" />
+    <Property Name="rut_alumno" Type="int" Nullable="false" />
+    <Property Name="saldo" Type="int" Nullable="false" />
+    <Property Name="monto_prorrateado" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="curso">
+    <Key>
+      <PropertyRef Name="id_curso" />
+    </Key>
+    <Property Name="id_curso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="curso" Type="int" Nullable="false" />
+    <Property Name="nivel" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="rut_representante" Type="int" Nullable="false" />
+    <Property Name="Colegio_id_colegio" Type="int" Nullable="false" />
+    <Property Name="id_fondo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="depositos">
+    <Key>
+      <PropertyRef Name="id_depósito" />
+    </Key>
+    <Property Name="id_depósito" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tipo" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="monto" Type="int" Nullable="false" />
+    <Property Name="numero_cuenta" Type="int" Nullable="false" />
+    <Property Name="fecha" Type="date" Nullable="false" />
+    <Property Name="comprobante" Type="varbinary(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="fondo_común">
+    <Key>
+      <PropertyRef Name="id_fondo" />
+    </Key>
+    <Property Name="id_fondo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="rut_representante" Type="int" Nullable="false" />
+    <Property Name="meta" Type="int" Nullable="false" />
+    <Property Name="monto_actual" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="funcionario">
+    <Key>
+      <PropertyRef Name="rut_funcionario" />
+    </Key>
+    <Property Name="rut_funcionario" Type="int" Nullable="false" />
+    <Property Name="dv_funcionario" Type="varchar" MaxLength="1" />
+    <Property Name="nombre_funcionario" Type="varchar" MaxLength="50" />
+    <Property Name="rol" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="id_usuario" Type="int" />
+  </EntityType>
+  <EntityType Name="representante">
+    <Key>
+      <PropertyRef Name="Rut_representante" />
+    </Key>
+    <Property Name="Rut_representante" Type="int" Nullable="false" />
+    <Property Name="dv" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="nombre_representante" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="e_mail" Type="varchar" MaxLength="50" />
+    <Property Name="repre_id_curso" Type="int" Nullable="false" />
+    <Property Name="repre_nivel_curso" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="seguros">
+    <Key>
+      <PropertyRef Name="id_seguro" />
+    </Key>
+    <Property Name="id_seguro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tipo_de_seguro" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="valor" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="seguros_contratados">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_curso" Type="int" Nullable="false" />
+    <Property Name="id_seguro" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="usuarios">
+    <Key>
+      <PropertyRef Name="id_usuario" />
+    </Key>
+    <Property Name="id_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_usuario" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="contraseña" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_actividad_curso">
+    <End Role="curso" Type="Self.curso" Multiplicity="1" />
+    <End Role="actividades" Type="Self.actividades" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="curso">
+        <PropertyRef Name="id_curso" />
+      </Principal>
+      <Dependent Role="actividades">
+        <PropertyRef Name="id_curso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_alumno_apoderado">
+    <End Role="apoderado" Type="Self.apoderado" Multiplicity="1" />
+    <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="apoderado">
+        <PropertyRef Name="rut_apoderado" />
+      </Principal>
+      <Dependent Role="alumno">
+        <PropertyRef Name="rut_apoderado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_alumno_curso">
+    <End Role="curso" Type="Self.curso" Multiplicity="1" />
+    <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="curso">
+        <PropertyRef Name="id_curso" />
+      </Principal>
+      <Dependent Role="alumno">
+        <PropertyRef Name="id_curso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_contrato_colegio">
+    <End Role="colegio" Type="Self.colegio" Multiplicity="1" />
+    <End Role="contrato" Type="Self.contrato" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="colegio">
+        <PropertyRef Name="id_colegio" />
+      </Principal>
+      <Dependent Role="contrato">
+        <PropertyRef Name="id_colegio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_contrato_curso">
+    <End Role="curso" Type="Self.curso" Multiplicity="1" />
+    <End Role="contrato" Type="Self.contrato" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="curso">
+        <PropertyRef Name="id_curso" />
+      </Principal>
+      <Dependent Role="contrato">
+        <PropertyRef Name="id_curso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_contrato_seguroContratado_curso">
+    <End Role="curso" Type="Self.curso" Multiplicity="1" />
+    <End Role="contrato" Type="Self.contrato" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="curso">
+        <PropertyRef Name="id_curso" />
+      </Principal>
+      <Dependent Role="contrato">
+        <PropertyRef Name="id_curso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cuenta_alumno">
+    <End Role="alumno" Type="Self.alumno" Multiplicity="1" />
+    <End Role="cuenta_alumno" Type="Self.cuenta_alumno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="alumno">
+        <PropertyRef Name="rut_alumno" />
+      </Principal>
+      <Dependent Role="cuenta_alumno">
+        <PropertyRef Name="rut_alumno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cuenta_curso">
+    <End Role="curso" Type="Self.curso" Multiplicity="1" />
+    <End Role="cuenta_alumno" Type="Self.cuenta_alumno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="curso">
+        <PropertyRef Name="id_curso" />
+      </Principal>
+      <Dependent Role="cuenta_alumno">
+        <PropertyRef Name="id_curso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_curso_colegio">
+    <End Role="colegio" Type="Self.colegio" Multiplicity="1" />
+    <End Role="curso" Type="Self.curso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="colegio">
+        <PropertyRef Name="id_colegio" />
+      </Principal>
+      <Dependent Role="curso">
+        <PropertyRef Name="Colegio_id_colegio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_curso_fondo">
+    <End Role="fondo_común" Type="Self.fondo_común" Multiplicity="1" />
+    <End Role="curso" Type="Self.curso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="fondo_común">
+        <PropertyRef Name="id_fondo" />
+      </Principal>
+      <Dependent Role="curso">
+        <PropertyRef Name="id_fondo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_curso_representante">
+    <End Role="representante" Type="Self.representante" Multiplicity="1" />
+    <End Role="curso" Type="Self.curso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="representante">
+        <PropertyRef Name="Rut_representante" />
+      </Principal>
+      <Dependent Role="curso">
+        <PropertyRef Name="rut_representante" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_fondo_representante">
+    <End Role="representante" Type="Self.representante" Multiplicity="1" />
+    <End Role="fondo_común" Type="Self.fondo_común" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="representante">
+        <PropertyRef Name="Rut_representante" />
+      </Principal>
+      <Dependent Role="fondo_común">
+        <PropertyRef Name="rut_representante" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_funcionario_usuario">
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+    <End Role="funcionario" Type="Self.funcionario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id_usuario" />
+      </Principal>
+      <Dependent Role="funcionario">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_seguroContratado_seguros">
+    <End Role="seguros" Type="Self.seguros" Multiplicity="1" />
+    <End Role="seguros_contratados" Type="Self.seguros_contratados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="seguros">
+        <PropertyRef Name="id_seguro" />
+      </Principal>
+      <Dependent Role="seguros_contratados">
+        <PropertyRef Name="id_seguro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="Sp_actualizarCuentaAlumno" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="a" Type="int" Mode="In" />
+    <Parameter Name="b" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Sp_actualizarFondoComún" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="a" Type="int" Mode="In" />
+    <Parameter Name="b" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Sp_actualizarSaldoCuentaAlumno" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="a" Type="int" Mode="In" />
+    <Parameter Name="b" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Sp_actualizarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="a" Type="int" Mode="In" />
+    <Parameter Name="b" Type="varchar" Mode="In" />
+    <Parameter Name="c" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Sp_AgregarSeguroViaje" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="a" Type="int" Mode="In" />
+    <Parameter Name="b" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Sp_AgregarSeguroVida" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="a" Type="int" Mode="In" />
+    <Parameter Name="b" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Sp_EliminarSeguroVida" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="a" Type="int" Mode="In" />
+    <Parameter Name="b" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Sp_EliminarSeguroVije" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="a" Type="int" Mode="In" />
+    <Parameter Name="b" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Sp_reporte_CuentaAlumno" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="a" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Sp_reporte_InfoAlumno" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="a" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="LaboratorioModelStoreContainer">
+    <EntitySet Name="actividades" EntityType="Self.actividades" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="alumno" EntityType="Self.alumno" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="apoderado" EntityType="Self.apoderado" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="colegio" EntityType="Self.colegio" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="contrato" EntityType="Self.contrato" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cuenta_alumno" EntityType="Self.cuenta_alumno" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="curso" EntityType="Self.curso" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="depositos" EntityType="Self.depositos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="fondo_común" EntityType="Self.fondo_común" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="funcionario" EntityType="Self.funcionario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="representante" EntityType="Self.representante" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="seguros" EntityType="Self.seguros" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="seguros_contratados" EntityType="Self.seguros_contratados" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_actividad_curso" Association="Self.FK_actividad_curso">
+      <End Role="curso" EntitySet="curso" />
+      <End Role="actividades" EntitySet="actividades" />
+    </AssociationSet>
+    <AssociationSet Name="FK_alumno_apoderado" Association="Self.FK_alumno_apoderado">
+      <End Role="apoderado" EntitySet="apoderado" />
+      <End Role="alumno" EntitySet="alumno" />
+    </AssociationSet>
+    <AssociationSet Name="FK_alumno_curso" Association="Self.FK_alumno_curso">
+      <End Role="curso" EntitySet="curso" />
+      <End Role="alumno" EntitySet="alumno" />
+    </AssociationSet>
+    <AssociationSet Name="FK_contrato_colegio" Association="Self.FK_contrato_colegio">
+      <End Role="colegio" EntitySet="colegio" />
+      <End Role="contrato" EntitySet="contrato" />
+    </AssociationSet>
+    <AssociationSet Name="FK_contrato_curso" Association="Self.FK_contrato_curso">
+      <End Role="curso" EntitySet="curso" />
+      <End Role="contrato" EntitySet="contrato" />
+    </AssociationSet>
+    <AssociationSet Name="FK_contrato_seguroContratado_curso" Association="Self.FK_contrato_seguroContratado_curso">
+      <End Role="curso" EntitySet="curso" />
+      <End Role="contrato" EntitySet="contrato" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cuenta_alumno" Association="Self.FK_Cuenta_alumno">
+      <End Role="alumno" EntitySet="alumno" />
+      <End Role="cuenta_alumno" EntitySet="cuenta_alumno" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cuenta_curso" Association="Self.FK_Cuenta_curso">
+      <End Role="curso" EntitySet="curso" />
+      <End Role="cuenta_alumno" EntitySet="cuenta_alumno" />
+    </AssociationSet>
+    <AssociationSet Name="FK_curso_colegio" Association="Self.FK_curso_colegio">
+      <End Role="colegio" EntitySet="colegio" />
+      <End Role="curso" EntitySet="curso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_curso_fondo" Association="Self.FK_curso_fondo">
+      <End Role="fondo_común" EntitySet="fondo_común" />
+      <End Role="curso" EntitySet="curso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_curso_representante" Association="Self.FK_curso_representante">
+      <End Role="representante" EntitySet="representante" />
+      <End Role="curso" EntitySet="curso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_fondo_representante" Association="Self.FK_fondo_representante">
+      <End Role="representante" EntitySet="representante" />
+      <End Role="fondo_común" EntitySet="fondo_común" />
+    </AssociationSet>
+    <AssociationSet Name="FK_funcionario_usuario" Association="Self.FK_funcionario_usuario">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="funcionario" EntitySet="funcionario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_seguroContratado_seguros" Association="Self.FK_seguroContratado_seguros">
+      <End Role="seguros" EntitySet="seguros" />
+      <End Role="seguros_contratados" EntitySet="seguros_contratados" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,391 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9199D531-A71F-4DA9-B579-A75E44A305F7}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Onetour2</RootNamespace>
+    <AssemblyName>Onetour2</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="itextsharp, Version=5.5.13.1, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.1\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.xmlworker, Version=5.5.13.1, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itextsharp.xmlworker.5.5.13.1\lib\itextsharp.xmlworker.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.3.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1358.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebDesign, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1358.0\lib\net40\Microsoft.ReportViewer.WebDesign.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1358.0\lib\net40\Microsoft.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.ReportViewer.WinForms.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Formularios\FrmCuentaAlumno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmCuentaAlumno.Designer.cs">
+      <DependentUpon>FrmCuentaAlumno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmFichaContrato.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmFichaContrato.Designer.cs">
+      <DependentUpon>FrmFichaContrato.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmModificarUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmModificarUsuario.Designer.cs">
+      <DependentUpon>FrmModificarUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmNuevoDepósito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmNuevoDepósito.Designer.cs">
+      <DependentUpon>FrmNuevoDepósito.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmNuevoSeguro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmNuevoSeguro.Designer.cs">
+      <DependentUpon>FrmNuevoSeguro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmNuevoUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmNuevoUsuario.Designer.cs">
+      <DependentUpon>FrmNuevoUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmSeguros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmSeguros.Designer.cs">
+      <DependentUpon>FrmSeguros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmBuscarGestionar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmBuscarGestionar.Designer.cs">
+      <DependentUpon>FrmBuscarGestionar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmInformación.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmInformación.Designer.cs">
+      <DependentUpon>FrmInformación.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmNuevoAlumno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmNuevoAlumno.Designer.cs">
+      <DependentUpon>FrmNuevoAlumno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmNuevoContrato.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmNuevoContrato.Designer.cs">
+      <DependentUpon>FrmNuevoContrato.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmNuevoCurso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmNuevoCurso.Designer.cs">
+      <DependentUpon>FrmNuevoCurso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmNuevoRegistro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmNuevoRegistro.Designer.cs">
+      <DependentUpon>FrmNuevoRegistro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmPrincipal.Designer.cs">
+      <DependentUpon>FrmPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmUsuarios.Designer.cs">
+      <DependentUpon>FrmUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\actividades.cs">
+      <DependentUpon>Base de datos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\alumno.cs">
+      <DependentUpon>Base de datos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\apoderado.cs">
+      <DependentUpon>Base de datos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Base de datos.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Base de datos.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Base de datos.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Base de datos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Base de datos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Base de datos.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\colegio.cs">
+      <DependentUpon>Base de datos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\contrato.cs">
+      <DependentUpon>Base de datos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\cuenta_alumno.cs">
+      <DependentUpon>Base de datos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\curso.cs">
+      <DependentUpon>Base de datos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\depositos.cs">
+      <DependentUpon>Base de datos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\fondo_común.cs">
+      <DependentUpon>Base de datos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\funcionario.cs">
+      <DependentUpon>Base de datos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\representante.cs">
+      <DependentUpon>Base de datos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\seguros.cs">
+      <DependentUpon>Base de datos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\seguros_contratados.cs">
+      <DependentUpon>Base de datos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Sp_reporte_CuentaAlumno_Result.cs">
+      <DependentUpon>Base de datos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Sp_reporte_InfoAlumno_Result.cs">
+      <DependentUpon>Base de datos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\usuarios.cs">
+      <DependentUpon>Base de datos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reportes\DataSetAlumno.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetAlumno.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReporteInfoAlumno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteInfoAlumno.Designer.cs">
+      <DependentUpon>ReporteInfoAlumno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="Validacion.cs" />
+    <EmbeddedResource Include="Formularios\FrmCuentaAlumno.resx">
+      <DependentUpon>FrmCuentaAlumno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmFichaContrato.resx">
+      <DependentUpon>FrmFichaContrato.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmModificarUsuario.resx">
+      <DependentUpon>FrmModificarUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmNuevoDepósito.resx">
+      <DependentUpon>FrmNuevoDepósito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmNuevoSeguro.resx">
+      <DependentUpon>FrmNuevoSeguro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmNuevoUsuario.resx">
+      <DependentUpon>FrmNuevoUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmSeguros.resx">
+      <DependentUpon>FrmSeguros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmBuscarGestionar.resx">
+      <DependentUpon>FrmBuscarGestionar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmInformación.resx">
+      <DependentUpon>FrmInformación.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmNuevoAlumno.resx">
+      <DependentUpon>FrmNuevoAlumno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmNuevoContrato.resx">
+      <DependentUpon>FrmNuevoContrato.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmNuevoCurso.resx">
+      <DependentUpon>FrmNuevoCurso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmNuevoRegistro.resx">
+      <DependentUpon>FrmNuevoRegistro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmPrincipal.resx">
+      <DependentUpon>FrmPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmUsuarios.resx">
+      <DependentUpon>FrmUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Reportes\InformeInfoAlumno.rdlc" />
+    <EmbeddedResource Include="Reportes\ReporteInfoAlumno.resx">
+      <DependentUpon>ReporteInfoAlumno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="Modelo\Base de datos.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Base de datos.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Modelo\Base de datos.edmx.diagram">
+      <DependentUpon>Base de datos.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Reportes\DataSetAlumno.xsc">
+      <DependentUpon>DataSetAlumno.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\DataSetAlumno.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetAlumno.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reportes\DataSetAlumno.xss">
+      <DependentUpon>DataSetAlumno.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Modelo\Base de datos.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Base de datos.Context.cs</LastGenOutput>
+      <DependentUpon>Base de datos.edmx</DependentUpon>
+    </Content>
+    <Content Include="Modelo\Base de datos.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Base de datos.edmx</DependentUpon>
+      <LastGenOutput>Base de datos.cs</LastGenOutput>
+    </Content>
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
